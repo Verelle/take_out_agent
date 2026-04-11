@@ -1,0 +1,126 @@
+# ─────────────────────────────────────────────────────────────
+# config.yml —— ModelStudio-Agent Starter 全局配置文件
+# 由 main.py 中的 read_config() 在启动时读取并解析
+# 支持格式：key: value（不支持嵌套结构）
+# ─────────────────────────────────────────────────────────────
+
+
+# ── 应用基本信息 ──────────────────────────────────────────────
+
+# 应用名称，会显示在日志和管理界面中，方便区分多个服务实例
+APP_NAME: "ModelStudio-Agent Starter"
+
+# 调试模式开关
+# false = 生产模式（关闭详细错误信息，提高安全性）
+# true  = 开发模式（显示详细报错，方便排查问题）
+DEBUG: false
+
+
+# ── 服务器网络配置 ────────────────────────────────────────────
+
+# 函数计算（FC）环境下服务监听的地址
+# "0.0.0.0" 表示监听所有网络接口，允许外部访问
+# 本地开发时可改为 "127.0.0.1"，只允许本机访问（更安全）
+FC_START_HOST: "0.0.0.0"
+
+# 本地直接运行时服务监听的地址
+# "127.0.0.1" = 只监听本机回环地址，外部无法访问
+HOST: "127.0.0.1"
+
+# 服务监听的端口号
+# 默认 8080，访问地址为 http://127.0.0.1:8080
+# 注意：端口号 1024 以下需要管理员权限，建议用 8000 以上
+PORT: 8080
+
+# 热重载开关（仅开发环境有效）
+# true  = 修改代码后服务自动重启，无需手动重启（开发阶段推荐）
+# false = 禁用热重载（生产环境推荐，避免意外重启）
+RELOAD: true
+
+
+# ── 阿里云百炼（DashScope）大模型配置 ────────────────────────
+
+# 阿里云百炼 API Key，用于鉴权
+# ⚠️  安全注意：生产环境务必通过环境变量注入，不要直接填写在这里！
+# 本地开发可在此填写，但提交代码前请删除
+# 获取地址：https://bailian.console.aliyun.com/
+DASHSCOPE_API_KEY: "sk-4b697d9135f44dd1964b555e94916fde"
+
+# 使用的大模型名称
+# 常用选项：
+#   qwen-turbo  —— 速度快、成本低，适合开发测试
+#   qwen-plus   —— 均衡性能，适合生产环境
+#   qwen-max    —— 最强性能，成本较高，适合复杂推理任务
+DASHSCOPE_MODEL_NAME: "qwen-turbo"
+
+
+# ── 麦当劳 MCP Server 配置 ────────────────────────────────────────
+
+# MCP Server 地址
+# ⚠️  推荐通过环境变量注入，不要直接填写在配置文件中！
+# 设置环境变量：export MCP_SERVER_URL="https://xxx"
+MCP_SERVER_URL: "https://mcp.mcd.cn"
+
+# MCP Server 认证 Token
+# ⚠️  安全注意：禁止在配置文件中填写敏感信息！
+# 必须通过环境变量注入：export MCP_TOKEN="your-token-here"
+MCP_TOKEN: "iafsHcMfvAEWtcTO6FTtc40jBuAl63VF"
+
+# MCP 请求超时时间（秒）
+MCP_TIMEOUT: 10
+
+
+# ── 日志配置 ──────────────────────────────────────────────────
+
+# 日志输出级别，控制哪些级别的日志会被打印
+# 级别从低到高：DEBUG < INFO < WARNING < ERROR < CRITICAL
+#   DEBUG   —— 最详细，包含所有调试信息（开发时使用）
+#   INFO    —— 常规运行信息（推荐默认值）
+#   WARNING —— 潜在问题提示
+#   ERROR   —— 错误信息（程序仍可运行）
+LOG_LEVEL: "INFO"
+
+
+# ── 打包与安装配置（供 setup.py 读取）────────────────────────
+# 以下字段用于将本项目打包为 Python 包（pip install 安装时使用）
+# 一般不需要修改，除非要发布到 PyPI 或修改包名
+
+# Python 包名（对应项目目录名）
+SETUP_PACKAGE_NAME: "deploy_starter"
+
+# 主模块文件名（不含 .py 后缀）
+SETUP_MODULE_NAME: "main"
+
+# 主入口函数名（供框架调用的启动函数）
+SETUP_FUNCTION_NAME: "run_app"
+
+# 安装后的命令行命令名（pip install 后可在终端直接输入此命令启动服务）
+SETUP_COMMAND_NAME: "ModelStudio-Agent-starter"
+
+# 包的显示名称
+SETUP_NAME: "ModelStudio-Agent-starter"
+
+# 包版本号，遵循语义化版本规范（主版本.次版本.修订号）
+SETUP_VERSION: "0.1.0"
+
+# 包的简短描述（一句话说明）
+SETUP_DESCRIPTION: "ModelStudio-Agent-starter"
+
+# 包的详细描述（会显示在 PyPI 页面或 pip show 输出中）
+SETUP_LONG_DESCRIPTION: "ModelStudio-Agent-starter services, supporting both direct execution and uvicorn deployment"
+
+
+# ── 可观测性 / 链路追踪配置 ───────────────────────────────────
+
+# 是否启用遥测追踪（OpenTelemetry 链路追踪）
+# TRUE  = 开启（可在阿里云 ARMS 等平台查看 LLM 调用链路、耗时、Token 消耗）
+# FALSE = 关闭（减少性能开销，但无法监控内部调用过程）
+TELEMETRY_ENABLE: TRUE
+
+
+# ── 函数计算（FC）运行命令配置 ────────────────────────────────
+
+# 在阿里云函数计算（Serverless）环境中启动服务的命令
+# /code/python/ 是 FC 容器内代码的默认挂载路径
+# 本地开发时此配置不生效，仅在部署到 FC 时使用
+FC_RUN_CMD: "python3 /code/python/deploy_starter/main.py"
