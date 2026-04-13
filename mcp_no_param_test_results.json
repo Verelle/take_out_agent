@@ -1,0 +1,37 @@
+{
+  "total": 6,
+  "success": 6,
+  "failed": 0,
+  "tools": {
+    "now-time-info": {
+      "status": "SUCCESS",
+      "description": "获取当前时间信息 - 返回当前服务器的完整时间信息，包括：\n- 时间戳（毫秒级）\n- 格式化的日期时",
+      "result_preview": "{'content': [{'text': '# API Response Information\\n\\nBelow is the response from an API call. To help"
+    },
+    "list-nutrition-foods": {
+      "status": "SUCCESS",
+      "description": "获取麦当劳常见餐品的营养成分数据，包括能量、蛋白质、脂肪、碳水化合物、钠、钙等信息，当用户咨询麦当劳",
+      "result_preview": "{'content': [{'text': '# API Response Information\\n\\nBelow is the response from an API call. To help"
+    },
+    "query-my-account": {
+      "status": "SUCCESS",
+      "description": "查询用户积分账户详情 - 当用户询问\"我有多少积分\"、\"查下我的积分\"、\"积分余额\"、\"查询过期积分",
+      "result_preview": "{'content': [{'text': '# API Response Information\\n\\nBelow is the response from an API call. To help"
+    },
+    "available-coupons": {
+      "status": "SUCCESS",
+      "description": "查询用户当前可领取的麦麦省的优惠券列表。返回券名称、图片、状态和促销标签。当用户询问有什么优惠、可以",
+      "result_preview": "{'content': [{'text': '### 麦麦省优惠券列表：\\n- 优惠券标题：满分饱饱双人早餐优惠券 \\\\\\n  状态：可领取 \\\\\\n  优惠券图片：\\\\\\n    <img src="
+    },
+    "auto-bind-coupons": {
+      "status": "SUCCESS",
+      "description": "自动领取麦麦省所有当前可用的麦当劳优惠券。无需指定具体的优惠券和couponId，系统会自动领取用户",
+      "result_preview": "{'content': [{'text': '### 领券结果\\n\\n总计: 4 张优惠券\\n成功: 4 张\\n失败: 0 张\\n\\n---\\n\\n#### 成功领取的优惠券：\\n\\n- 13.5元中"
+    },
+    "mall-points-products": {
+      "status": "SUCCESS",
+      "description": "查询可兑换餐品券列表 - 当用户询问\"有哪些积分兑换商品\"、\"积分可以兑换什么\"、\"查看积分商城\"时",
+      "result_preview": "{'content': [{'text': '# API Response Information\\n\\nBelow is the response from an API call. To help"
+    }
+  }
+}

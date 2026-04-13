@@ -166,9 +166,14 @@ async def init_func(self):
     mcp_timeout = int(os.getenv("MCP_TIMEOUT", config.get("MCP_TIMEOUT", 10)))
     
     if mcp_url and mcp_token:
-        init_mcp_client(base_url=mcp_url, token=mcp_token, timeout=mcp_timeout)
+        success = init_mcp_client(base_url=mcp_url, token=mcp_token, timeout=mcp_timeout)
+        if success:
+            print(f"✓ MCP 初始化成功：{mcp_url}")
+        else:
+            print(f"✗ MCP 初始化失败：{mcp_url}")
+            print("  提示：请检查 MCP_SERVER_URL、MCP_TOKEN 是否正确")
     else:
-        print("警告：未配置 MCP_SERVER_URL 和 MCP_TOKEN，MCP 工具将不可用")
+        print("⚠ 未配置 MCP_SERVER_URL 和 MCP_TOKEN，MCP 工具将不可用")
 
 
 @agent_app.shutdown
@@ -297,20 +302,34 @@ async def query_func(
         ),
         sys_prompt="""你是麦当劳中国智能点餐助手，名字是 Friday。
 
-你的核心职责是：
+【核心职责】
 1. 帮助用户查询麦当劳菜单、餐品营养信息
 2. 为用户推荐菜品搭配（基于品味、营养、价格等）
 3. 帮助用户在线点餐、支付订单
 4. 告知用户订单状态、配送信息
 5. 分享优惠券、积分兑换等会员权益
 
-重要声明：
-- 所有关于菜单、价格、订单、门店信息等必须通过麦当劳 MCP 工具查询，不允许凭空编造
-- 用户的送餐地址、订单历史、优惠券等个人信息需调用相应工具获取
+【强制工具使用规则】
+❌ 禁止凭空生成任何真实数据
+✅ 所有用户问题都必须通过工具获取真实数据，包括但不限于：
+  • 餐品营养信息 → 必须调用 list_nutrition_foods
+  • 菜单查询 → 必须调用 query_meals
+  • 餐品详情 → 必须调用 query_meal_detail
+  • 门店位置 → 必须调用 query_nearby_stores
+  • 订单查询 → 必须调用 query_order
+  • 优惠券信息 → 必须调用 query_my_coupons
+  • 用户账户 → 必须调用 query_my_account
+  • 其他业务数据 → 调用相应的 MCP 工具
+
+【交互风格】
 - 如果用户需求不清晰，请礼貌地追问以获得更多信息
 - 始终用中文回复，语气亲切自然，体现麦当劳品牌的友好风格
+- 调用工具后，将结果整理成易懂的格式呈现给用户
 
-请记住：真实数据优先于文本生成。""",  # 系统提示词，定义 Agent 人格
+【优先级】
+真实工具数据 > 大模型生成内容（即使工具返回的数据看起来不完整，也不要补充编造数据）
+
+请记住：你拥有 19 个专业工具，使用它们是你的首要职责。""",  # 系统提示词，定义 Agent 人格
         toolkit=toolkit,            # 绑定工具集
         memory=AgentScopeSessionHistoryMemory(
             service=self.session_service,  # 使用内存会话历史服务

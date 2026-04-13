@@ -1,0 +1,152 @@
+{
+  "list_nutrition_foods (无参数)": {
+    "name": "list_nutrition_foods (无参数)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/list-nutrition-foods (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "list_nutrition_foods (有食品名)": {
+    "name": "list_nutrition_foods (有食品名)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/list-nutrition-foods (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "now_time_info": {
+    "name": "now_time_info",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/now-time-info (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "campaign_calendar": {
+    "name": "campaign_calendar",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/campaign-calendar (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_nearby_stores": {
+    "name": "query_nearby_stores",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-nearby-stores (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_store_coupons": {
+    "name": "query_store_coupons",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-store-coupons (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_meals": {
+    "name": "query_meals",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-meals (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_meal_detail": {
+    "name": "query_meal_detail",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-meal-detail (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_meal_detail (带门店)": {
+    "name": "query_meal_detail (带门店)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-meal-detail (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "calculate_price": {
+    "name": "calculate_price",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/calculate-price (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "calculate_price (含优惠券)": {
+    "name": "calculate_price (含优惠券)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/calculate-price (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "delivery_query_addresses": {
+    "name": "delivery_query_addresses",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/delivery-query-addresses (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "delivery_create_address": {
+    "name": "delivery_create_address",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/delivery-create-address (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "delivery_create_address (含坐标)": {
+    "name": "delivery_create_address (含坐标)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/delivery-create-address (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "available_coupons": {
+    "name": "available_coupons",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/available-coupons (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_my_coupons": {
+    "name": "query_my_coupons",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-my-coupons (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "auto_bind_coupons": {
+    "name": "auto_bind_coupons",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/auto-bind-coupons (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_my_account": {
+    "name": "query_my_account",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-my-account (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "create_order": {
+    "name": "create_order",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/create-order (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "create_order (完整参数)": {
+    "name": "create_order (完整参数)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/create-order (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "query_order": {
+    "name": "query_order",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/query-order (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "mall_points_products": {
+    "name": "mall_points_products",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/mall-points-products (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "mall_points_products (带user_id)": {
+    "name": "mall_points_products (带user_id)",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/mall-points-products (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "mall_product_detail": {
+    "name": "mall_product_detail",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/mall-product-detail (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  },
+  "mall_create_order": {
+    "name": "mall_create_order",
+    "status": "FAILED",
+    "result": null,
+    "error": "麦当劳 MCP 调用失败：HTTPConnectionPool(host='127.0.0.1', port=8080): Max retries exceeded with url: /tools/mall-create-order (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8080): Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\"))"
+  }
+}

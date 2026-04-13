@@ -13,7 +13,7 @@ APP_NAME: "ModelStudio-Agent Starter"
 # 调试模式开关
 # false = 生产模式（关闭详细错误信息，提高安全性）
 # true  = 开发模式（显示详细报错，方便排查问题）
-DEBUG: false
+DEBUG: true
 
 
 # ── 服务器网络配置 ────────────────────────────────────────────
@@ -44,7 +44,7 @@ RELOAD: true
 # ⚠️  安全注意：生产环境务必通过环境变量注入，不要直接填写在这里！
 # 本地开发可在此填写，但提交代码前请删除
 # 获取地址：https://bailian.console.aliyun.com/
-DASHSCOPE_API_KEY: "sk-4b697d9135f44dd1964b555e94916fde"
+DASHSCOPE_API_KEY: ""
 
 # 使用的大模型名称
 # 常用选项：
@@ -78,7 +78,7 @@ MCP_TIMEOUT: 10
 #   INFO    —— 常规运行信息（推荐默认值）
 #   WARNING —— 潜在问题提示
 #   ERROR   —— 错误信息（程序仍可运行）
-LOG_LEVEL: "INFO"
+LOG_LEVEL: "DEBUG"
 
 
 # ── 打包与安装配置（供 setup.py 读取）────────────────────────
