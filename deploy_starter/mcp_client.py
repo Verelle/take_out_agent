@@ -9,7 +9,7 @@ import os
 import logging
 import requests
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 
 from agentscope.tool import ToolResponse
 from agentscope.message import TextBlock
@@ -166,7 +166,10 @@ class McpClient:
 
     def call_tool(self, tool_name: str, payload: Dict[str, Any]) -> Dict[str, Any]:
         """
-        调用 MCP 工具（使用标准 tools/call 方法）。
+        调用 MCP 工具（使用标准的 tools/call RPC 方法）。
+        
+        符合麦当劳MCP标准调用规范：使用 tools/call 作为统一的RPC方法名，
+        通过 tool_name 参数指定具体调用的工具。
 
         参数：
           - tool_name: MCP 工具名称（如 "query-nearby-stores"）
@@ -182,7 +185,7 @@ class McpClient:
         if not self.handshake_success:
             raise ValueError("MCP handshake failed, tool call not available")
         
-        # 使用标准的 tools/call 方法
+        # 使用标准的 tools/call 方法，передать工具名和参数
         tool_params = {
             "name": tool_name,
             "arguments": payload
@@ -209,6 +212,8 @@ def _wrap_tool_result(tool_name: str, result: Any) -> ToolResponse:
     """
     将 MCP 工具结果包装为 AgentScope ToolResponse。
     
+    处理真实的麦当劳MCP返回格式（content, isError, structuredContent）
+    
     参数：
       tool_name: 工具名称
       result: MCP 工具返回的结果
@@ -217,15 +222,43 @@ def _wrap_tool_result(tool_name: str, result: Any) -> ToolResponse:
       符合 AgentScope 框架要求的 ToolResponse
     """
     try:
-        # 转换为 JSON 字符串便于展示
+        # 处理真实麦当劳MCP的返回格式
         if isinstance(result, dict):
-            content = json.dumps(result, ensure_ascii=False, indent=2)
+            # 真实API格式：{content: [...], isError: bool, structuredContent: [...]}
+            if "content" in result or "isError" in result or "structuredContent" in result:
+                # 提取有用的内容
+                content_text = ""
+                if isinstance(result.get("content"), list) and result["content"]:
+                    # 从content列表中提取text
+                    for item in result["content"]:
+                        if isinstance(item, dict) and "text" in item:
+                            content_text += item["text"] + "\n"
+                
+                # 如果content为空，尝试使用structuredContent
+                if not content_text and result.get("structuredContent"):
+                    content_text = json.dumps(
+                        result["structuredContent"],
+                        ensure_ascii=False,
+                        indent=2
+                    )
+                
+                # 如果都没有，使用整个result
+                if not content_text:
+                    content_text = json.dumps(result, ensure_ascii=False, indent=2)
+                
+                text_block = TextBlock(text=content_text)
+                return ToolResponse(content=[text_block])
+            else:
+                # 虚拟服务器格式或其他格式
+                content = json.dumps(result, ensure_ascii=False, indent=2)
+                text_block = TextBlock(text=content)
+                return ToolResponse(content=[text_block])
         else:
+            # 非字典格式
             content = str(result)
+            text_block = TextBlock(text=content)
+            return ToolResponse(content=[text_block])
         
-        # 使用 TextBlock 包装内容
-        text_block = TextBlock(text=content)
-        return ToolResponse(content=[text_block])
     except Exception as e:
         logger.error(f"Failed to wrap tool result for {tool_name}: {e}")
         error_block = TextBlock(text=f"工具调用失败: {str(e)}")
@@ -253,22 +286,30 @@ def list_nutrition_foods(food_name: str = "") -> ToolResponse:
         return ToolResponse(content=[error_block])
 
 
-def query_nearby_stores(latitude: float, longitude: float) -> ToolResponse:
+def query_nearby_stores(searchType: int = 2, beType: int = 1, city: str = None, keyword: str = None) -> ToolResponse:
     """
     查询用户位置附近的麦当劳门店。
+    参数与麦当劳MCP的query-nearby-stores完全一致。
 
     参数：
-      latitude: 纬度
-      longitude: 经度
+      searchType: 必填，1：查询收藏，2：按位置搜索，默认选中1
+      beType: 必填，默认1，到店
+      city: 城市，仅在searchType=2时必填
+      keyword: 位置关键词，仅在searchType=2时必填
 
     返回：
       附近门店列表（ToolResponse）
     """
     try:
-        payload = {
-            "latitude": latitude,
-            "longitude": longitude,
-        }
+        payload = {}
+        if searchType is not None:
+            payload["searchType"] = searchType
+        if beType is not None:
+            payload["beType"] = beType
+        if city is not None:
+            payload["city"] = city
+        if keyword is not None:
+            payload["keyword"] = keyword
         result = mcp_client.call_tool("query-nearby-stores", payload)
         return _wrap_tool_result("query-nearby-stores", result)
     except Exception as e:
@@ -329,22 +370,26 @@ def delivery_create_address(
         return ToolResponse(content=[error_block])
 
 
-def query_store_coupons(store_code: str, user_id: str) -> ToolResponse:
+def query_store_coupons(storeCode: str, beCode: str = None, orderType: int = 1) -> ToolResponse:
     """
     查询用户在指定门店可使用的优惠券。
+    参数与麦当劳MCP的query-store-coupons完全一致。
 
     参数：
-      store_code: 门店代码
-      user_id: 用户 ID
+      storeCode: 门店代码，必填
+      beCode: BE编码，可选
+      orderType: 订单类型，必填，1=到店，2=外送，默认1
 
     返回：
       可用优惠券列表（ToolResponse）
     """
     try:
         payload = {
-            "storeCode": store_code,
-            "userId": user_id,
+            "storeCode": storeCode,
+            "orderType": orderType,
         }
+        if beCode is not None:
+            payload["beCode"] = beCode
         result = mcp_client.call_tool("query-store-coupons", payload)
         return _wrap_tool_result("query-store-coupons", result)
     except Exception as e:
@@ -352,18 +397,23 @@ def query_store_coupons(store_code: str, user_id: str) -> ToolResponse:
         return ToolResponse(content=[error_block])
 
 
-def query_meals(store_code: str) -> ToolResponse:
+def query_meals(storeCode: str, beCode: str = None, orderType: int = 1) -> ToolResponse:
     """
     查询指定门店当前可售卖的餐品菜单。
+    参数与麦当劳MCP的query-meals完全一致。
 
     参数：
-      store_code: 门店代码
+      storeCode: 门店代码，必填
+      beCode: BE编码，可选
+      orderType: 订单类型，必填，1=到店，2=外送，默认1
 
     返回：
       菜单列表（ToolResponse）
     """
     try:
-        payload = {"storeCode": store_code}
+        payload = {"storeCode": storeCode, "orderType": orderType}
+        if beCode is not None:
+            payload["beCode"] = beCode
         result = mcp_client.call_tool("query-meals", payload)
         return _wrap_tool_result("query-meals", result)
     except Exception as e:
@@ -371,21 +421,26 @@ def query_meals(store_code: str) -> ToolResponse:
         return ToolResponse(content=[error_block])
 
 
-def query_meal_detail(meal_code: str, store_code: str = None) -> ToolResponse:
+def query_meal_detail(code: str, storeCode: str = None, beCode: str = None, orderType: int = 1) -> ToolResponse:
     """
     查询餐品的详细信息（如套餐组成、默认选择等）。
+    参数与麦当劳MCP的query-meal-detail完全一致。
 
     参数：
-      meal_code: 餐品编码
-      store_code: 门店代码（可选）
+      code: 餐品编码，必填
+      storeCode: 门店代码，可选
+      beCode: BE编码，可选
+      orderType: 订单类型，必填，1=到店，2=外送，默认1
 
     返回：
       餐品详情（ToolResponse）
     """
     try:
-        payload = {"mealCode": meal_code}
-        if store_code:
-            payload["storeCode"] = store_code
+        payload = {"code": code, "orderType": orderType}
+        if storeCode is not None:
+            payload["storeCode"] = storeCode
+        if beCode is not None:
+            payload["beCode"] = beCode
         result = mcp_client.call_tool("query-meal-detail", payload)
         return _wrap_tool_result("query-meal-detail", result)
     except Exception as e:
@@ -394,28 +449,34 @@ def query_meal_detail(meal_code: str, store_code: str = None) -> ToolResponse:
 
 
 def calculate_price(
-    store_code: str,
-    items: list,
-    coupon_ids: list = None,
+    storeCode: str,
+    beCode: str = None,
+    orderType: int = 1,
+    items: list = None,
 ) -> ToolResponse:
     """
     计算商品的价格，包括商品金额、配送费、优惠金额等。
+    参数与麦当劳MCP的calculate-price完全一致。
 
     参数：
-      store_code: 门店代码
-      items: 商品列表，每个商品格式为 {"code": "...", "quantity": ...}
-      coupon_ids: 优惠券 ID 列表（可选）
+      storeCode: 门店代码，必填
+      beCode: BE编码，可选
+      orderType: 订单类型，必填，1=到店，2=外送，默认1
+      items: 商品列表，每个商品格式为 {"productCode": "...", "quantity": 1, "couponId": "...", "couponCode": "..."}
 
     返回：
       价格计算结果（ToolResponse）
     """
     try:
+        if items is None:
+            items = []
         payload = {
-            "storeCode": store_code,
+            "storeCode": storeCode,
+            "orderType": orderType,
             "items": items,
         }
-        if coupon_ids:
-            payload["couponIds"] = coupon_ids
+        if beCode is not None:
+            payload["beCode"] = beCode
         result = mcp_client.call_tool("calculate-price", payload)
         return _wrap_tool_result("calculate-price", result)
     except Exception as e:
@@ -424,41 +485,43 @@ def calculate_price(
 
 
 def create_order(
-    store_code: str,
-    be_code: str,
-    user_id: str,
-    items: list,
-    dine_in_type: str = "DELIVERY",
-    coupon_ids: list = None,
-    address_id: str = None,
+    storeCode: str = None,
+    beCode: str = None,
+    addressId: str = None,
+    takeWayCode: str = None,
+    orderType: int = 1,
+    items: List[Dict[str, Any]] = None,
 ) -> ToolResponse:
     """
     创建订单。
+    参数与麦当劳MCP的create-order完全一致。
 
     参数：
-      store_code: 门店代码
-      be_code: 门店 BE 代码
-      user_id: 用户 ID
-      items: 订单商品列表
-      dine_in_type: 就餐方式（DELIVERY = 外送，PICKUP = 自取，DINE_IN = 堂食）
-      coupon_ids: 优惠券 ID 列表（可选）
-      address_id: 配送地址 ID（外送时必需）（可选）
+      storeCode: 门店编码，可选
+      beCode: BE编码，可选
+      addressId: 外送场景下必填
+      takeWayCode: 到店场景下必填，需要从 calculate-price 的价格计算工具中获取
+      orderType: 必填，到店：orderType=1，外送（麦乐送&团餐）：orderType=2
+      items: 商品列表（数组），每个商品格式为 {"productCode": "...", "quantity": 1, "couponId": "...", "couponCode": "..."}
 
     返回：
       订单详情及支付链接（ToolResponse）
     """
     try:
+        if items is None:
+            items = []
         payload = {
-            "storeCode": store_code,
-            "beCode": be_code,
-            "userId": user_id,
+            "orderType": orderType,
             "items": items,
-            "dineInType": dine_in_type,
         }
-        if coupon_ids:
-            payload["couponIds"] = coupon_ids
-        if address_id:
-            payload["addressId"] = address_id
+        if storeCode is not None:
+            payload["storeCode"] = storeCode
+        if beCode is not None:
+            payload["beCode"] = beCode
+        if addressId is not None:
+            payload["addressId"] = addressId
+        if takeWayCode is not None:
+            payload["takeWayCode"] = takeWayCode
         result = mcp_client.call_tool("create-order", payload)
         return _wrap_tool_result("create-order", result)
     except Exception as e:
@@ -466,21 +529,20 @@ def create_order(
         return ToolResponse(content=[error_block])
 
 
-def query_order(order_id: str, user_id: str) -> ToolResponse:
+def query_order(orderId: str) -> ToolResponse:
     """
-    查询订单详情（包括订单状态、内容、配送信息等）。
+    查询订单详情。
+    参数与麦当劳MCP的query-order完全一致。
 
     参数：
-      order_id: 订单 ID
-      user_id: 用户 ID
+      orderId: 订单号，必填
 
     返回：
       订单信息（ToolResponse）
     """
     try:
         payload = {
-            "orderId": order_id,
-            "userId": user_id,
+            "orderId": orderId,
         }
         result = mcp_client.call_tool("query-order", payload)
         return _wrap_tool_result("query-order", result)
@@ -505,18 +567,16 @@ def campaign_calendar() -> ToolResponse:
         return ToolResponse(content=[error_block])
 
 
-def available_coupons(user_id: str) -> ToolResponse:
+def available_coupons() -> ToolResponse:
     """
     查询用户当前可领取的麦麦省优惠券列表。
-
-    参数：
-      user_id: 用户 ID
+    参数与麦当劳MCP的available-coupons完全一致（无参数）。
 
     返回：
       可领取优惠券列表（ToolResponse）
     """
     try:
-        payload = {"userId": user_id}
+        payload = {}
         result = mcp_client.call_tool("available-coupons", payload)
         return _wrap_tool_result("available-coupons", result)
     except Exception as e:
@@ -524,18 +584,16 @@ def available_coupons(user_id: str) -> ToolResponse:
         return ToolResponse(content=[error_block])
 
 
-def auto_bind_coupons(user_id: str) -> ToolResponse:
+def auto_bind_coupons() -> ToolResponse:
     """
     自动领取用户当前可用的所有麦麦省优惠券。
-
-    参数：
-      user_id: 用户 ID
+    参数与麦当劳MCP的auto-bind-coupons完全一致（无参数）。
 
     返回：
       领取结果（ToolResponse）
     """
     try:
-        payload = {"userId": user_id}
+        payload = {}
         result = mcp_client.call_tool("auto-bind-coupons", payload)
         return _wrap_tool_result("auto-bind-coupons", result)
     except Exception as e:
@@ -543,18 +601,16 @@ def auto_bind_coupons(user_id: str) -> ToolResponse:
         return ToolResponse(content=[error_block])
 
 
-def query_my_coupons(user_id: str) -> ToolResponse:
+def query_my_coupons() -> ToolResponse:
     """
     查询用户有哪些可用的优惠券。
-
-    参数：
-      user_id: 用户 ID
+    参数与麦当劳MCP的query-my-coupons完全一致（无参数）。
 
     返回：
       用户优惠券列表（ToolResponse）
     """
     try:
-        payload = {"userId": user_id}
+        payload = {}
         result = mcp_client.call_tool("query-my-coupons", payload)
         return _wrap_tool_result("query-my-coupons", result)
     except Exception as e:
