@@ -1,0 +1,62 @@
+[
+  {
+    "storeCode": "SX001",
+    "storeName": "星选汉堡(徐家汇店)",
+    "address": "上海市徐汇区虹桥路1号",
+    "latitude": 31.199179,
+    "longitude": 121.445923,
+    "openingHours": "07:00-23:00",
+    "phone": "400-123-4567",
+    "status": "OPEN",
+    "deliveryAvailable": true,
+    "distanceKm": 0.5,
+    "deliveryFee": 3.0,
+    "minOrderAmount": 20.0,
+    "estimatedDeliveryTime": "25-35分钟"
+  },
+  {
+    "storeCode": "SX002",
+    "storeName": "星选汉堡(人民广场店)",
+    "address": "上海市黄浦区人民大道100号",
+    "latitude": 31.233704,
+    "longitude": 121.480539,
+    "openingHours": "06:30-22:30",
+    "phone": "400-123-4568",
+    "status": "OPEN",
+    "deliveryAvailable": true,
+    "distanceKm": 1.2,
+    "deliveryFee": 4.0,
+    "minOrderAmount": 25.0,
+    "estimatedDeliveryTime": "30-40分钟"
+  },
+  {
+    "storeCode": "SX003",
+    "storeName": "星选汉堡(陆家嘴店)",
+    "address": "上海市浦东新区陆家嘴环路100号",
+    "latitude": 31.240753,
+    "longitude": 121.505715,
+    "openingHours": "08:00-24:00",
+    "phone": "400-123-4569",
+    "status": "OPEN",
+    "deliveryAvailable": true,
+    "distanceKm": 3.5,
+    "deliveryFee": 5.0,
+    "minOrderAmount": 30.0,
+    "estimatedDeliveryTime": "35-45分钟"
+  },
+  {
+    "storeCode": "SX004",
+    "storeName": "星选汉堡(静安寺店)",
+    "address": "上海市静安区南京西路1700号",
+    "latitude": 31.228021,
+    "longitude": 121.454396,
+    "openingHours": "07:30-23:30",
+    "phone": "400-123-4570",
+    "status": "OPEN",
+    "deliveryAvailable": true,
+    "distanceKm": 2.1,
+    "deliveryFee": 3.5,
+    "minOrderAmount": 22.0,
+    "estimatedDeliveryTime": "28-38分钟"
+  }
+]

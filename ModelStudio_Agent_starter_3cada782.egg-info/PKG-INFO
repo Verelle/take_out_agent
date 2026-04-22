@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: ModelStudio-Agent-starter-3cada782
+Version: 0.1.0
+Summary: ModelStudio-Agent-starter
+Requires-Python: >=3.10
+Requires-Dist: fastapi==0.116.1
+Requires-Dist: uvicorn
+Requires-Dist: agentscope==1.0.11
+Requires-Dist: agentscope-runtime==1.0.5
+Requires-Dist: setuptools
+Requires-Dist: PyYAML
+Dynamic: description
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+ModelStudio-Agent-starter services, supporting both direct execution and uvicorn deployment

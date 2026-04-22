@@ -130,13 +130,14 @@ curl -X POST http://127.0.0.1:8080/process -H "Content-Type: application/json" -
 ```powershell
 $body = @{
     input = @(
+
         @{
             role = "user"
             type = "message"
             content = @(
                 @{
                     type = "text"
-                    text = "你好,我在这里：纬度31.0299，经度121.4312，帮我找附近门店"
+                    text = "你提到的先前的设定，比如用户在上海，或者巨无霸的营养数据是从哪里来的？MCP调用请求发到了哪个url?"
                 }
             )
         }

@@ -1,0 +1,396 @@
+[
+  {
+    "storeCode": "SX001",
+    "categories": [
+      {
+        "categoryId": "BURGER",
+        "categoryName": "招牌汉堡",
+        "items": [
+          {
+            "mealCode": "SX_BG001",
+            "mealName": "星选招牌双层牛堡",
+            "description": "双层优质牛肉，搭配新鲜生菜、番茄和特制星选酱",
+            "price": 22.9,
+            "originalPrice": 26.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-double-burger.jpg",
+            "tags": ["热销", "推荐"]
+          },
+          {
+            "mealCode": "SX_BG002",
+            "mealName": "星选香脆鸡堡",
+            "description": "新鲜炸鸡肉，搭配生菜、番茄和蛋黄酱",
+            "price": 18.9,
+            "originalPrice": 21.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-chicken-burger.jpg",
+            "tags": ["新品", "好评"]
+          },
+          {
+            "mealCode": "SX_BG003",
+            "mealName": "星选芝士牛堡",
+            "description": "单层优质牛肉，搭配浓郁芝士和番茄",
+            "price": 19.9,
+            "originalPrice": 23.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-cheese-burger.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "SET",
+        "categoryName": "超值套餐",
+        "items": [
+          {
+            "mealCode": "SX_SET001",
+            "mealName": "双层牛堡套餐",
+            "description": "招牌双层牛堡 + 薯条(中) + 饮品(中)",
+            "price": 35.9,
+            "originalPrice": 42.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-set-double.jpg",
+            "tags": ["推荐", "划算"]
+          },
+          {
+            "mealCode": "SX_SET002",
+            "mealName": "鸡堡套餐",
+            "description": "香脆鸡堡 + 薯条(中) + 饮品(中)",
+            "price": 31.9,
+            "originalPrice": 38.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-set-chicken.jpg"
+          },
+          {
+            "mealCode": "SX_SET003",
+            "mealName": "家庭套餐",
+            "description": "2份汉堡 + 薯条(大) + 鸡块 + 2份饮品",
+            "price": 68.9,
+            "originalPrice": 82.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-family-set.jpg",
+            "tags": ["家庭"]
+          }
+        ]
+      },
+      {
+        "categoryId": "SNACK",
+        "categoryName": "小食配餐",
+        "items": [
+          {
+            "mealCode": "SX_SN001",
+            "mealName": "薯条(大)",
+            "description": "金黄酥脆的现炸薯条",
+            "price": 11.9,
+            "originalPrice": 13.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-fries-large.jpg"
+          },
+          {
+            "mealCode": "SX_SN002",
+            "mealName": "鸡块(6块)",
+            "description": "香脆多汁的炸鸡块",
+            "price": 15.9,
+            "originalPrice": 17.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-nuggets.jpg"
+          },
+          {
+            "mealCode": "SX_SN003",
+            "mealName": "玉米杯",
+            "description": "香甜新鲜玉米粒",
+            "price": 7.9,
+            "originalPrice": 8.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-corn.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "DRINK",
+        "categoryName": "饮品",
+        "items": [
+          {
+            "mealCode": "SX_DR001",
+            "mealName": "可乐(中)",
+            "description": "冰爽可乐",
+            "price": 5.9,
+            "originalPrice": 6.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-cola.jpg"
+          },
+          {
+            "mealCode": "SX_DR002",
+            "mealName": "橙汁(中)",
+            "description": "新鲜果汁",
+            "price": 6.9,
+            "originalPrice": 7.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-orange-juice.jpg"
+          },
+          {
+            "mealCode": "SX_DR003",
+            "mealName": "冰红茶(中)",
+            "description": "清爽冰红茶",
+            "price": 5.9,
+            "originalPrice": 6.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-ice-tea.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "storeCode": "SX002",
+    "categories": [
+      {
+        "categoryId": "BURGER",
+        "categoryName": "招牌汉堡",
+        "items": [
+          {
+            "mealCode": "SX_BG001",
+            "mealName": "星选招牌双层牛堡",
+            "description": "双层优质牛肉，搭配新鲜生菜、番茄和特制星选酱",
+            "price": 22.9,
+            "originalPrice": 26.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-double-burger.jpg",
+            "tags": ["热销", "推荐"]
+          },
+          {
+            "mealCode": "SX_BG002",
+            "mealName": "星选香脆鸡堡",
+            "description": "新鲜炸鸡肉，搭配生菜、番茄和蛋黄酱",
+            "price": 18.9,
+            "originalPrice": 21.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-chicken-burger.jpg",
+            "tags": ["新品"]
+          },
+          {
+            "mealCode": "SX_BG003",
+            "mealName": "星选芝士牛堡",
+            "description": "单层优质牛肉，搭配浓郁芝士和番茄",
+            "price": 19.9,
+            "originalPrice": 23.9,
+            "available": false,
+            "imageUrl": "https://example.com/images/sx-cheese-burger.jpg",
+            "tags": ["售罄"]
+          }
+        ]
+      },
+      {
+        "categoryId": "SET",
+        "categoryName": "超值套餐",
+        "items": [
+          {
+            "mealCode": "SX_SET001",
+            "mealName": "双层牛堡套餐",
+            "description": "招牌双层牛堡 + 薯条(中) + 饮品(中)",
+            "price": 35.9,
+            "originalPrice": 42.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-set-double.jpg"
+          },
+          {
+            "mealCode": "SX_SET002",
+            "mealName": "鸡堡套餐",
+            "description": "香脆鸡堡 + 薯条(中) + 饮品(中)",
+            "price": 31.9,
+            "originalPrice": 38.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-set-chicken.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "SNACK",
+        "categoryName": "小食配餐",
+        "items": [
+          {
+            "mealCode": "SX_SN001",
+            "mealName": "薯条(大)",
+            "description": "金黄酥脆的现炸薯条",
+            "price": 11.9,
+            "originalPrice": 13.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-fries-large.jpg"
+          },
+          {
+            "mealCode": "SX_SN002",
+            "mealName": "鸡块(6块)",
+            "description": "香脆多汁的炸鸡块",
+            "price": 15.9,
+            "originalPrice": 17.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-nuggets.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "DRINK",
+        "categoryName": "饮品",
+        "items": [
+          {
+            "mealCode": "SX_DR001",
+            "mealName": "可乐(中)",
+            "description": "冰爽可乐",
+            "price": 5.9,
+            "originalPrice": 6.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-cola.jpg"
+          },
+          {
+            "mealCode": "SX_DR002",
+            "mealName": "橙汁(中)",
+            "description": "新鲜果汁",
+            "price": 6.9,
+            "originalPrice": 7.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-orange-juice.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "storeCode": "SX003",
+    "categories": [
+      {
+        "categoryId": "BURGER",
+        "categoryName": "招牌汉堡",
+        "items": [
+          {
+            "mealCode": "SX_BG001",
+            "mealName": "星选招牌双层牛堡",
+            "description": "双层优质牛肉，搭配新鲜生菜、番茄和特制星选酱",
+            "price": 22.9,
+            "originalPrice": 26.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-double-burger.jpg",
+            "tags": ["热销"]
+          },
+          {
+            "mealCode": "SX_BG002",
+            "mealName": "星选香脆鸡堡",
+            "description": "新鲜炸鸡肉，搭配生菜、番茄和蛋黄酱",
+            "price": 18.9,
+            "originalPrice": 21.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-chicken-burger.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "SET",
+        "categoryName": "超值套餐",
+        "items": [
+          {
+            "mealCode": "SX_SET001",
+            "mealName": "双层牛堡套餐",
+            "description": "招牌双层牛堡 + 薯条(中) + 饮品(中)",
+            "price": 35.9,
+            "originalPrice": 42.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-set-double.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "SNACK",
+        "categoryName": "小食配餐",
+        "items": [
+          {
+            "mealCode": "SX_SN001",
+            "mealName": "薯条(大)",
+            "description": "金黄酥脆的现炸薯条",
+            "price": 11.9,
+            "originalPrice": 13.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-fries-large.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "DRINK",
+        "categoryName": "饮品",
+        "items": [
+          {
+            "mealCode": "SX_DR001",
+            "mealName": "可乐(中)",
+            "description": "冰爽可乐",
+            "price": 5.9,
+            "originalPrice": 6.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-cola.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "storeCode": "SX004",
+    "categories": [
+      {
+        "categoryId": "BURGER",
+        "categoryName": "招牌汉堡",
+        "items": [
+          {
+            "mealCode": "SX_BG001",
+            "mealName": "星选招牌双层牛堡",
+            "description": "双层优质牛肉，搭配新鲜生菜、番茄和特制星选酱",
+            "price": 22.9,
+            "originalPrice": 26.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-double-burger.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "SET",
+        "categoryName": "超值套餐",
+        "items": [
+          {
+            "mealCode": "SX_SET001",
+            "mealName": "双层牛堡套餐",
+            "description": "招牌双层牛堡 + 薯条(中) + 饮品(中)",
+            "price": 35.9,
+            "originalPrice": 42.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-set-double.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "SNACK",
+        "categoryName": "小食配餐",
+        "items": [
+          {
+            "mealCode": "SX_SN001",
+            "mealName": "薯条(大)",
+            "description": "金黄酥脆的现炸薯条",
+            "price": 11.9,
+            "originalPrice": 13.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-fries-large.jpg"
+          }
+        ]
+      },
+      {
+        "categoryId": "DRINK",
+        "categoryName": "饮品",
+        "items": [
+          {
+            "mealCode": "SX_DR001",
+            "mealName": "可乐(中)",
+            "description": "冰爽可乐",
+            "price": 5.9,
+            "originalPrice": 6.9,
+            "available": true,
+            "imageUrl": "https://example.com/images/sx-cola.jpg"
+          }
+        ]
+      }
+    ]
+  }
+]

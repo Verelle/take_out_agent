@@ -14,7 +14,7 @@ def read_config():
         os.path.dirname(__file__), "deploy_starter", "config.yml"
     )
     config = {}
-    with open(config_path, "r") as f:
+    with open(config_path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if line and not line.startswith("#"):

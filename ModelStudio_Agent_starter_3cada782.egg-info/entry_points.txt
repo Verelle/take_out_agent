@@ -1,0 +1,2 @@
+[console_scripts]
+ModelStudio-Agent-starter = deploy_starter.main:run_app

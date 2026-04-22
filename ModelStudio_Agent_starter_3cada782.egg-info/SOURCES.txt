@@ -1,0 +1,11 @@
+setup.py
+ModelStudio_Agent_starter_3cada782.egg-info/PKG-INFO
+ModelStudio_Agent_starter_3cada782.egg-info/SOURCES.txt
+ModelStudio_Agent_starter_3cada782.egg-info/dependency_links.txt
+ModelStudio_Agent_starter_3cada782.egg-info/entry_points.txt
+ModelStudio_Agent_starter_3cada782.egg-info/requires.txt
+ModelStudio_Agent_starter_3cada782.egg-info/top_level.txt
+deploy_starter/config.yml
+deploy_starter/main.py
+deploy_starter/mcp_client.py
+deploy_starter/test_mcp_init.py
